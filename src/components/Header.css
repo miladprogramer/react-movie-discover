@@ -1,0 +1,14 @@
+.header{
+    width: 100%;
+    text-transform:uppercase ;
+    background-color: #36445a;
+    color: white;
+    display: flex;
+    justify-content: center;
+position: fixed;
+font-size: 25px;
+padding: 15px;
+
+box-shadow: 0px 1px 5px black;
+z-index: 100;
+}
