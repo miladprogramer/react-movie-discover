@@ -1,0 +1,25 @@
+.media{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: #282c34;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 10px;
+    
+}
+.media:hover{
+    background-color: white;
+    color: black;
+}
+.description{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    text-align: center;
+    padding: 5px;
+}
+.img_poster{
+    border-radius: 10px;
+}

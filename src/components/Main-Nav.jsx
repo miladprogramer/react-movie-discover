@@ -6,17 +6,33 @@ import WhatshotIcon from '@mui/icons-material/Whatshot';
 import MovieIcon from '@mui/icons-material/Movie';
 import TvIcon from '@mui/icons-material/Tv';
 import SearchIcon from '@mui/icons-material/Search';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
 
+ 
+
+  useEffect(()=>{
+    if(value===0) navigate("/")
+    if(value===1) navigate("/Movies")
+    if(value===2) navigate("/Series")
+    if(value===3) navigate("/Search")
+
+  },[value,navigate] )
+  
   return (
+    
     <Box sx={{
-         width: "100%",
+        width:"100%",
          position:"fixed",
          bottom: 0,
-         backgroundColor: '#0063cc',
+         backgroundColor: "#0063cc" ,
+         zIndex:2,
+       
      }}>
       <BottomNavigation
         showLabels
