@@ -9,18 +9,18 @@ import CustomPagination from '../components/CustomPagination';
 const Trending = () => {
 
   const [content,setContent]=useState([]);
-  const [page,setPage]=useState()
+  const [page,setPage]=useState(1)
   useEffect(() =>{
 
     const options = {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMWE4NDM3NjIzNTRlYmRiM2QyNDlhMTUxNGIwY2M5ZSIsInN1YiI6IjY0ZTEzMDFiMzcxMDk3MDBhYzQ1NTlmZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0kfWu571mqNTnlMR_WRctkNP-_M5eysrL3K7uB_6njI&page=${page}`
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMWE4NDM3NjIzNTRlYmRiM2QyNDlhMTUxNGIwY2M5ZSIsInN1YiI6IjY0ZTEzMDFiMzcxMDk3MDBhYzQ1NTlmZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0kfWu571mqNTnlMR_WRctkNP-_M5eysrL3K7uB_6njI`
       }
     };
     
-    fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
+    fetch(`https://api.themoviedb.org/3/trending/all/day?language=en-US&page=${page}`, options)
       .then(response => response.json())
       .then(response => {
      console.log(response.results)
