@@ -13,7 +13,7 @@ window.scroll(0,0)
     <div className='navigation-page'>
     <Stack spacing={2}>
    
-    <Pagination count={10} color="warning" onChange={(e)=>handlePageChange(e.target.textContent)}/>
+    <Pagination count={100} color="warning" onChange={(e)=>handlePageChange(e.target.textContent)}/>
   
   </Stack>
   </div>

@@ -2,9 +2,12 @@ import React, { useEffect , useState} from 'react'
 import SinglePage from '../components/SinglePage';
 import CustomPagination from '../components/CustomPagination';
 import './Movies.css'
+import Genres from '../components/Genres';
 const Movies = () => {
   const [content,setContent]=useState([]);
   const [page,setPage]=useState(1)
+ 
+
 
   useEffect(()=>{
     const options = {
@@ -20,6 +23,7 @@ const Movies = () => {
       .then(response => {
         console.log(response.results)
         setContent(response.results)
+      
       }
         
      
@@ -30,6 +34,8 @@ const Movies = () => {
   return (
     <>
     <div className='page_title'>Movies</div>
+
+<Genres />
    <div className='movies'>
    {
 
@@ -41,12 +47,13 @@ const Movies = () => {
        poster={c.poster_path}
         media_type="movie"
         release_date={c.release_date || c.first_air_date}
-        vote_average={c.vote_average} />
+        vote_average={c.vote_average} 
+        />
      )) 
      
      }
 
-     <CustomPagination setPage={setPage} />
+     <CustomPagination setPage={setPage}  />
    </div>
 
 
