@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import Chip from '@mui/material/Chip';
 
 
-const Genres = () => {
+const Genres = ({genres,setGenres , selectedGenres,setSelectedGenres,setPage}) => {
 
-const [genres,setGenres]=useState([])
+const handleAdd=(genre)=>{
+
+    setSelectedGenres([...selectedGenres,genre])
+    setGenres(genres.filter((g)=>g.id!==genre.id))
+    setPage(1)
+}
+
+const handleRemove=(genre)=>{
+
+    setSelectedGenres(selectedGenres.filter((select)=> select.id !== genre.id))
+    setGenres([...genres,genre])
+    setPage(1)
+}
 
 useEffect(()=>{
     const options = {
@@ -28,11 +41,35 @@ useEffect(()=>{
 
   return (
     <>
-    <div>
+    <div style={{padding:"20px"  ,textAlign:"center"}}>
+
+    {
+            selectedGenres && selectedGenres.map((genre) =>(
+
+          <Chip label={genre.name} 
+          key={genre.id}
+          size="small"
+           color="primary"
+            style={{margin:2} }
+             clickable 
+            onDelete={()=>handleRemove(genre)}
+              />
+              
+
+            ))
+        }
         {
-            genres.map((genre) =>(
-                
-                 <span>{genre.name}</span>
+            genres && genres.map((genre) =>(
+
+          <Chip label={genre.name} 
+          key={genre.id}
+          size="small"
+           color="warning"
+            style={{margin:2} }
+             clickable 
+             onClick={()=>handleAdd(genre)}
+              />
+              
 
             ))
         }

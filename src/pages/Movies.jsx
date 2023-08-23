@@ -6,8 +6,8 @@ import Genres from '../components/Genres';
 const Movies = () => {
   const [content,setContent]=useState([]);
   const [page,setPage]=useState(1)
- 
-
+  const [selectedGenres,setSelectedGenres]=useState([])
+  const [genres,setGenres]=useState([])
 
   useEffect(()=>{
     const options = {
@@ -35,7 +35,8 @@ const Movies = () => {
     <>
     <div className='page_title'>Movies</div>
 
-<Genres />
+<Genres selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres}
+genres={genres} setGenres={setGenres} setPage={setPage} />
    <div className='movies'>
    {
 
