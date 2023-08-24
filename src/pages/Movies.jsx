@@ -3,11 +3,13 @@ import SinglePage from '../components/SinglePage';
 import CustomPagination from '../components/CustomPagination';
 import './Movies.css'
 import Genres from '../components/Genres';
+import useGenres from '../hooks/useGenres';
 const Movies = () => {
   const [content,setContent]=useState([]);
   const [page,setPage]=useState(1)
   const [selectedGenres,setSelectedGenres]=useState([])
   const [genres,setGenres]=useState([])
+  const useGenre=useGenres(selectedGenres)
 
   useEffect(()=>{
     const options = {
@@ -18,25 +20,26 @@ const Movies = () => {
       }
     };
     
-    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`, options)
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}&with_genres=${useGenre}`, options)
       .then(response => response.json())
       .then(response => {
         console.log(response.results)
         setContent(response.results)
-      
+        // setGenreId(selectedGenres.map((g)=>g.id)) 
       }
         
      
       )
       .catch(err => console.error(err));
-  },[page])
-
+  },[page,useGenre])
+  
   return (
     <>
     <div className='page_title'>Movies</div>
 
 <Genres selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres}
-genres={genres} setGenres={setGenres} setPage={setPage} />
+genres={genres} setGenres={setGenres} setPage={setPage}
+ />
    <div className='movies'>
    {
 

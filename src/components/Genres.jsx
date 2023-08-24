@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Chip from '@mui/material/Chip';
 
 
-const Genres = ({genres,setGenres , selectedGenres,setSelectedGenres,setPage}) => {
+const Genres = ({genres,setGenres , selectedGenres,setSelectedGenres,setPage }) => {
 
 const handleAdd=(genre)=>{
 
@@ -27,12 +27,15 @@ useEffect(()=>{
         }
       };
       
-      fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+      fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en`, options)
         .then(response => response.json())
         .then(response =>
             {
             console.log(response.genres) 
-            setGenres(response.genres)  
+            
+            setGenres(response.genres) 
+            
+            
             } ) 
         .catch(err => console.error(err));
 
