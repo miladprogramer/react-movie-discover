@@ -4,11 +4,13 @@ import CustomPagination from '../components/CustomPagination';
 import './Movies.css'
 import Genres from '../components/Genres';
 import useGenres from '../hooks/useGenres';
+
 const Movies = () => {
   const [content,setContent]=useState([]);
   const [page,setPage]=useState(1)
   const [selectedGenres,setSelectedGenres]=useState([])
   const [genres,setGenres]=useState([])
+  const [totalPages,setTotalPages]=useState()
   const useGenre=useGenres(selectedGenres)
 
   useEffect(()=>{
@@ -25,6 +27,7 @@ const Movies = () => {
       .then(response => {
         console.log(response.results)
         setContent(response.results)
+        setTotalPages(response.total_pages)
         // setGenreId(selectedGenres.map((g)=>g.id)) 
       }
         
@@ -57,7 +60,7 @@ genres={genres} setGenres={setGenres} setPage={setPage}
      
      }
 
-     <CustomPagination setPage={setPage}  />
+     <CustomPagination setPage={setPage} totalPages={totalPages}  />
    </div>
 
 

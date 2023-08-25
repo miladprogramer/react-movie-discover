@@ -10,6 +10,8 @@ const Trending = () => {
 
   const [content,setContent]=useState([]);
   const [page,setPage]=useState(1)
+  const [totalPages,setTotalPages]=useState()
+
   useEffect(() =>{
 
     const options = {
@@ -23,8 +25,9 @@ const Trending = () => {
     fetch(`https://api.themoviedb.org/3/trending/all/day?language=en-US&page=${page}`, options)
       .then(response => response.json())
       .then(response => {
-     console.log(response.results)
+    
         setContent(response.results)
+        setTotalPages(response.total_pages)
       })
       .catch(err => console.error(err));
   },[page])
@@ -50,7 +53,7 @@ const Trending = () => {
      
      }
 
-     <CustomPagination setPage={setPage} />
+     <CustomPagination setPage={setPage} totalPages={totalPages}/>
    </div>
 
 

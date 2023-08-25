@@ -9,6 +9,7 @@ const Movies = () => {
   const [page,setPage]=useState(1)
   const [selectedGenres,setSelectedGenres]=useState([])
   const [genres,setGenres]=useState([])
+  const [totalPages,setTotalPages]=useState()
   const useGenre=useGenres(selectedGenres)
 
   useEffect(()=>{
@@ -23,9 +24,10 @@ const Movies = () => {
     fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&page=${page}&with_genres=${useGenre}`, options)
       .then(response => response.json())
       .then(response => {
-        console.log(response.results)
+     
         setContent(response.results)
         // setGenreId(selectedGenres.map((g)=>g.id)) 
+        setTotalPages(response.total_pages)
       }
         
      
@@ -57,7 +59,7 @@ genres={genres} setGenres={setGenres} setPage={setPage}
      
      }
 
-     <CustomPagination setPage={setPage}  />
+     <CustomPagination setPage={setPage} totalPages={totalPages} />
    </div>
 
 

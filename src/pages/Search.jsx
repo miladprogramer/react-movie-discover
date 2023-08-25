@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import SinglePage from '../components/SinglePage';
 import CustomPagination from '../components/CustomPagination';
+import './Movies.css'
 const Search = () => {
 
 
@@ -15,9 +16,17 @@ const [value, setValue] = useState(0);
 const [searchText, setSearchText] = useState("");
 const [content, setContent] = useState("");
 const [page,setPage]=useState(1)
+const [totalPages,setTotalPages]=useState()
+
 const handleChange = (event, newValue) => {
   setValue(newValue);
 };
+
+const handleSearch = (e) => {
+  setSearchText(e.target.value)
+  setPage(1)
+};
+
 
 useEffect(()=>{
   const options = {
@@ -28,15 +37,17 @@ useEffect(()=>{
     }
   };
   
-  fetch(`https://api.themoviedb.org/3/search/collection?query=${searchText}&include_adult=false&language=en-US&page=1`, options)
+  fetch(`https://api.themoviedb.org/3/search/multi?query=${searchText}&include_adult=false&language=en-US
+  &page=${page}&${value ? "TV" : "Movie"}`, options)
     .then(response => response.json())
     .then(response => {
       console.log(response)
       setContent(response.results)
+      setTotalPages(response.total_pages)
     })
       
     .catch(err => console.error(err));
-},[value,searchText])
+},[value,searchText,page])
 
 const darkTheme = createTheme({
   palette: {
@@ -49,11 +60,11 @@ const darkTheme = createTheme({
 <ThemeProvider theme={darkTheme}>
 <div style={{display:"flex" , margin:"15px"}}>
 <TextField id="filled-basic" label="Filled" variant="filled" fullWidth
-onChange={(e)=>setSearchText(e.target.value)} />
+onChange={(e)=>handleSearch(e)} />
 <Button style={{ marginLeft:"15px"}} variant="contained" ><SearchIcon /></Button>
     </div>
 <div>
-<Box sx={{ width: '100%',marginTop:"15px"}}>
+<Box sx={{ width: '100%',marginTop:"15px", marginBottom:"35px"}}>
       <Tabs value={value} onChange={handleChange} centered>
         <Tab style={{ width:"50%"}} label="Movies" />
         <Tab style={{ width:"50%"}}label="TV Series" />
@@ -64,6 +75,7 @@ onChange={(e)=>setSearchText(e.target.value)} />
 </ThemeProvider>
 
 <div>
+<div className='movies'>
 {
 
 content && content.map( (c) =>(
@@ -72,7 +84,7 @@ content && content.map( (c) =>(
  id={c.id} 
  title={c.title || c.name}
   poster={c.poster_path}
-   media_type={value ? "TV" : "Movie"}
+   media_type={value ? "TV" : "movie"}
    release_date={c.release_date || c.first_air_date}
    vote_average={c.vote_average} 
    />
@@ -80,11 +92,12 @@ content && content.map( (c) =>(
 
 }
 {
-  searchText && !content && 
+  searchText && !content &&
   (value ? <h2>No Series found.</h2> : <h2>No Movies found.</h2>)
 }
+<CustomPagination setPage={setPage}  totalPages={totalPages}/>
+</div>
 
-<CustomPagination setPage={setPage}  />
 
 </div>
 
