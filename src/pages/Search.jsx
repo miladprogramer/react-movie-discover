@@ -37,8 +37,8 @@ useEffect(()=>{
     }
   };
   
-  fetch(`https://api.themoviedb.org/3/search/multi?query=${searchText}&include_adult=false&language=en-US
-  &page=${page}&${value ? "TV" : "Movie"}`, options)
+  fetch(`https://api.themoviedb.org/3/search/${value ? "tv" : "movie"}?query=${searchText}&include_adult=false&language=en-US
+  &page=${page}&`, options)
     .then(response => response.json())
     .then(response => {
       console.log(response)
