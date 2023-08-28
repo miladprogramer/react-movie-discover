@@ -1,0 +1,30 @@
+.img-movie img{
+    border-radius: 10px;
+    
+}
+.details{
+display: flex;
+width: 100%;
+}
+
+.detail{
+    display: flex;
+    flex-direction: column;
+    margin-left: 80px;
+    }
+    .genres{
+        display: flex;
+        
+    }
+    .genre{
+        background-color: rgb(159, 42, 165);
+        padding: 2px;
+        border-radius: 10px;
+        margin-left: 10px;
+        
+    }
+    .title{
+        display: flex;
+        justify-content: flex-start;
+    }
+
