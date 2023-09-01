@@ -4,6 +4,8 @@ import { useEffect,useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { img_300, unavailable } from '../config/config'
 import './ModalContent.css'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 const style = {
 //   position: 'absolute',
 //   top: '50%',
@@ -19,7 +21,7 @@ margin:"50px",
   p: 2,
 };
 
-export default function ModalContent({children,media_type,id}) {
+export default function ModalContent({children,media_type,id,vote_average}) {
   const [open, setOpen] =useState(false);
   const [content,setContent]=useState();
   const [genres,setGenres]=useState([]);
@@ -76,7 +78,11 @@ export default function ModalContent({children,media_type,id}) {
               {genres.map(g => <div className='genre'>{g.name}</div>)}
              
             </div>
-
+  
+<div className='progress-bar'>
+<CircularProgressbar value={`${vote_average}`*10} text={`${vote_average}%`} />
+</div>
+    
          </div>
 
          </div>
