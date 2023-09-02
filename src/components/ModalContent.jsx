@@ -6,6 +6,9 @@ import { img_300, unavailable } from '../config/config'
 import './ModalContent.css'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import playIcon from '../image/play.png'
+import Button from '@mui/material/Button';
+
 const style = {
 //   position: 'absolute',
 //   top: '50%',
@@ -24,6 +27,7 @@ margin:"50px",
 export default function ModalContent({children,media_type,id,vote_average}) {
   const [open, setOpen] =useState(false);
   const [content,setContent]=useState();
+  const [video,setVideo]=useState();
   const [genres,setGenres]=useState([]);
 
   const handleOpen = () => setOpen(true);
@@ -50,6 +54,16 @@ export default function ModalContent({children,media_type,id,vote_average}) {
             )
         .catch(err => console.error(err));
 
+        
+        fetch(`https://api.themoviedb.org/3/${media_type}/${id}/videos?language=en-US`, options)
+          .then(response => response.json())
+          .then(response => 
+            {
+                console.log(response)
+                setVideo(response.results[0]?.key)
+            })
+          
+          .catch(err => console.error(err));
   },[])
   return (
     <div>
@@ -78,11 +92,25 @@ export default function ModalContent({children,media_type,id,vote_average}) {
               {genres.map(g => <div className='genre'>{g.name}</div>)}
              
             </div>
-  
-<div className='progress-bar'>
+  <div className='progress_play'>
+    <div className='progress-bar'>
 <CircularProgressbar value={`${vote_average}`*10} text={`${vote_average}%`} />
 </div>
-    
+
+<Button href={`https://www.youtube.com/watch?v=${video}`}>
+  <div className='img-play'>
+  <img src={playIcon}/>
+  <span>Watch Trailer</span>
+</div>
+</Button>
+
+  </div>
+
+    <div className='overview'>
+      <p>Overview</p>
+{content.overview}
+
+    </div>
          </div>
 
          </div>

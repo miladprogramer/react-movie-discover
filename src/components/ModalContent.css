@@ -14,9 +14,10 @@ width: 100%;
     flex-direction: column;
     margin-left: 80px;
     }
+   
     .genres{
         display: flex;
-        
+        margin-top: 30px;
     }
     .genre{
         background-color: rgb(159, 42, 165);
@@ -29,11 +30,30 @@ width: 100%;
         display: flex;
         justify-content: flex-start;
     }
-
+.progress_play{
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+}
     .progress-bar{
-        margin-top: 30px;
-        width: 60px;
-        height: 60px;
+        
+        width: 70px;
+        height: 70px;
+    }
+    .img-play{
+        margin-top: -5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        color: white;
+    }
+    .img-play img{
+        width: 70px;
+        height: 70px;
+    }
+    .overview p{
+        font-size: 20px;
     }
   
 
