@@ -25,7 +25,7 @@ const Trending = () => {
     fetch(`https://api.themoviedb.org/3/trending/all/day?language=en-US&page=${page}`, options)
       .then(response => response.json())
       .then(response => {
-    
+    console.log(response.results);
         setContent(response.results)
         setTotalPages(response.total_pages)
       })
@@ -48,7 +48,9 @@ const Trending = () => {
        poster={c.poster_path}
         media_type={c.media_type}
         release_date={c.release_date || c.first_air_date}
-        vote_average={c.vote_average} />
+        vote_average={c.vote_average}
+      
+        />
      )) 
      
      }

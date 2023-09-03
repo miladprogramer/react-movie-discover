@@ -41,7 +41,7 @@ useEffect(()=>{
   &page=${page}&`, options)
     .then(response => response.json())
     .then(response => {
-      console.log(response)
+      // console.log(response)
       setContent(response.results)
       setTotalPages(response.total_pages)
     })

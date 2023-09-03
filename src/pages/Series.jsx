@@ -24,7 +24,7 @@ const Movies = () => {
     fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&page=${page}&with_genres=${useGenre}`, options)
       .then(response => response.json())
       .then(response => {
-     
+    //  console.log(response.results);
         setContent(response.results)
         // setGenreId(selectedGenres.map((g)=>g.id)) 
         setTotalPages(response.total_pages)

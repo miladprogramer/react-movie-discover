@@ -8,7 +8,9 @@ const SinglePage = ({
 }) => {
   return (
     <>
-    <ModalContent media_type={media_type} id={id} vote_average={vote_average}>
+    <ModalContent media_type={media_type} id={id} vote_average={vote_average} 
+ 
+    release_date={release_date}>
     <div className='media'>
     <Badge badgeContent={vote_average} color={vote_average < 6 ? "error" : "success"}/>
    

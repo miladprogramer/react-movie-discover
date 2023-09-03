@@ -52,8 +52,15 @@ width: 100%;
         width: 70px;
         height: 70px;
     }
+    .overview{
+        margin-bottom: 40px;
+    }
     .overview p{
         font-size: 20px;
+    }
+    .release-date{
+        display: flex;
+       justify-content: space-between;
     }
   
 
