@@ -8,6 +8,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import playIcon from '../image/play.png'
 import Button from '@mui/material/Button';
+import CreditSlider from './Slider';
 
 const style = {
   //   position: 'absolute',
@@ -135,7 +136,15 @@ export default function ModalContent({ children, media_type, id, vote_average, r
 
                     </div>
                   </div>
+                  {/* <div className='slider'>
+<CreditSlider />
+                  </div> */}
+                  <div className='slider'>
+                    <CreditSlider media_type={media_type} id={id} />
+                  </div>
+                  
                 </div>
+
 
               </div>
 
