@@ -140,6 +140,8 @@ export default function ModalContent({ children, media_type, id, vote_average, r
 <CreditSlider />
                   </div> */}
                   <div className='slider'>
+
+                    <span>Casts</span>
                     <CreditSlider media_type={media_type} id={id} />
                   </div>
                   
