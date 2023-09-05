@@ -1,13 +1,14 @@
 .img-slider{
     width: 100px;
     height: 100px;
-    
+    margin: 5px;
    border-radius: 10px;
+   
    
 }
 .slider-img{
-    max-width: 70%;
    
+    font-size: 12px;
 
 }
 /* .main-slider{
