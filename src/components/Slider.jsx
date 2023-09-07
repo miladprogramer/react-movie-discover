@@ -298,7 +298,7 @@ const CreditSlider = ({ media_type, id }) => {
     <Carousel slidesToShow={8} slidesToScroll={1} swiping >
     {
            cast.map((c) => (
-                        <div className='slider-img'>
+                        <div key={c.id} className='slider-img'>
                           <img className='img-slider' src={c.profile_path ? `${img_300}/${c.profile_path}` : unavailable} />
                           <span>{c.name}</span>
                         </div>

@@ -89,7 +89,7 @@ export default function ModalContent({ children, media_type, id, vote_average, r
                     {content.original_title || content.title || content.name}
                   </div>
                   <div className='genres'>
-                    {genres.map(g => <div className='genre'>{g.name}</div>)}
+                    {genres.map(g =>  <div key={g.id} className='genre'>{g.name}</div>)}
 
                   </div>
                   <div className='progress_play'>

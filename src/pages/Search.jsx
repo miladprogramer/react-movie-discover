@@ -41,7 +41,7 @@ useEffect(()=>{
   &page=${page}&`, options)
     .then(response => response.json())
     .then(response => {
-      // console.log(response)
+    
       setContent(response.results)
       setTotalPages(response.total_pages)
     })
@@ -84,7 +84,7 @@ content && content.map( (c) =>(
  id={c.id} 
  title={c.title || c.name}
   poster={c.poster_path}
-   media_type={value ? "TV" : "movie"}
+   media_type={value ? "tv" : "movie"}
    release_date={c.release_date || c.first_air_date}
    vote_average={c.vote_average} 
    />

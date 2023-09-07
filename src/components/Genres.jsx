@@ -31,7 +31,7 @@ useEffect(()=>{
         .then(response => response.json())
         .then(response =>
             {
-            console.log(response.genres) 
+       
             
             setGenres(response.genres) 
             
